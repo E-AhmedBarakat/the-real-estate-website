@@ -1,0 +1,1361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DarNest - Premium real estate, properties, houses, and apartments in the Middle East. Buy, sell, or rent your perfect building today."
+    />
+    <meta
+      name="keywords"
+      content="Realeste, properties, house, building, appartment, Middle East, DarNest"
+    />
+    <title>DarNest (بيت / عش) | Premium Real Estate & Properties</title>
+
+    <!-- Google Fonts: Cairo (Great for both English and Arabic) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* CSS Variables */
+      :root {
+        --primary-color: #c8a97e; /* Desert Gold */
+        --primary-dark: #b08d5b;
+        --secondary-color: #1a232c; /* Deep Navy */
+        --text-main: #333333;
+        --text-light: #666666;
+        --bg-light: #f8f9fa;
+        --white: #ffffff;
+        --transition: all 0.3s ease;
+      }
+
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Cairo", sans-serif;
+      }
+
+      body {
+        color: var(--text-main);
+        background-color: var(--bg-light);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+      }
+      h2 {
+        font-size: 2.5rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title span {
+        color: var(--primary-color);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+        color: var(--text-light);
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-block;
+        padding: 12px 28px;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        text-align: center;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-color);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--secondary-color);
+        border: 2px solid var(--secondary-color);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--secondary-color);
+        color: var(--white);
+      }
+
+      /* Header & Nav */
+      header {
+        background-color: var(--white);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: var(--transition);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--secondary-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+      }
+
+      .logo span {
+        color: var(--primary-color);
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .nav-links li a {
+        font-weight: 600;
+        color: var(--secondary-color);
+        transition: var(--transition);
+        cursor: pointer;
+      }
+
+      .nav-links li a:hover,
+      .nav-links li a.active-link {
+        color: var(--primary-color);
+      }
+
+      .mobile-toggle {
+        display: none;
+        font-size: 1.5rem;
+        color: var(--secondary-color);
+        cursor: pointer;
+      }
+
+      /* Page Management (SPA styling) */
+      .page-section {
+        display: none;
+        padding-top: 80px; /* Offset for sticky header */
+        animation: fadeIn 0.5s ease;
+      }
+
+      .page-section.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 20px;
+      }
+
+      /* --- HOME PAGE --- */
+      .hero {
+        height: 100vh;
+        background:
+          linear-gradient(rgba(26, 35, 44, 0.7), rgba(26, 35, 44, 0.7)),
+          url("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80")
+            center/cover;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: var(--white);
+        margin-top: -80px; /* pull up behind header */
+        padding-top: 80px;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .hero h1 {
+        color: var(--white);
+      }
+      .hero p {
+        color: #ddd;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .trust-strip {
+        background-color: var(--secondary-color);
+        padding: 2rem 0;
+        color: var(--white);
+      }
+
+      .trust-grid {
+        display: flex;
+        justify-content: space-around;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .trust-item h4 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .benefits {
+        background-color: var(--bg-light);
+      }
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .benefit-card {
+        background: var(--white);
+        padding: 2.5rem;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: var(--transition);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-10px);
+      }
+      .benefit-card i {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+      }
+
+      .testimonials {
+        background-color: var(--white);
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+      .testi-card {
+        padding: 2rem;
+        background: var(--bg-light);
+        border-left: 4px solid var(--primary-color);
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+      }
+      .testi-author {
+        margin-top: 1rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        font-style: normal;
+      }
+
+      /* --- LISTINGS PAGE --- */
+      .filter-bar {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 3rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 8px 20px;
+        background: var(--white);
+        border: 1px solid #ddd;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--primary-color);
+        color: var(--white);
+        border-color: var(--primary-color);
+      }
+
+      .listing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+      }
+
+      .listing-card {
+        background: var(--white);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .listing-card:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .listing-img {
+        height: 220px;
+        position: relative;
+      }
+
+      .listing-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .listing-content {
+        padding: 20px;
+      }
+      .listing-price {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .listing-meta {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #eee;
+        margin-top: 15px;
+        padding-top: 15px;
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+
+      /* --- ABOUT PAGE --- */
+      .about-flex {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+      .about-text {
+        flex: 1;
+      }
+      .about-image {
+        flex: 1;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      /* --- SERVICES PAGE --- */
+      .timeline {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--primary-color);
+        transform: translateX(-50%);
+      }
+      .timeline-item {
+        margin-bottom: 40px;
+        position: relative;
+        width: 50%;
+        padding-right: 40px;
+      }
+      .timeline-item:nth-child(even) {
+        margin-left: auto;
+        padding-right: 0;
+        padding-left: 40px;
+      }
+      .timeline-dot {
+        position: absolute;
+        right: -10px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        background: var(--secondary-color);
+        border: 4px solid var(--primary-color);
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: -10px;
+      }
+
+      /* FAQ */
+      .faq-item {
+        background: var(--white);
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        padding: 20px;
+        cursor: pointer;
+      }
+      .faq-item h4 {
+        margin-bottom: 0;
+        color: var(--secondary-color);
+      }
+      .faq-answer {
+        display: none;
+        margin-top: 15px;
+        color: var(--text-light);
+      }
+      .faq-item.active .faq-answer {
+        display: block;
+      }
+
+      /* --- CONTACT PAGE --- */
+      .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+      }
+      .contact-form textarea {
+        height: 150px;
+        resize: none;
+      }
+      .contact-info-card {
+        background: var(--secondary-color);
+        color: var(--white);
+        padding: 40px;
+        border-radius: 8px;
+      }
+      .contact-info-card h3 {
+        color: var(--white);
+      }
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .info-item i {
+        color: var(--primary-color);
+        font-size: 1.2rem;
+      }
+
+      .map-placeholder {
+        width: 100%;
+        height: 300px;
+        background: #e0e0e0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        margin-top: 20px;
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        background-color: var(--secondary-color);
+        color: var(--white);
+        padding: 4rem 20px 2rem;
+      }
+      .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 3rem;
+      }
+      .footer-logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      .footer-logo span {
+        color: var(--primary-color);
+        font-weight: 400;
+        font-size: 1.2rem;
+      }
+      .footer-col h4 {
+        color: var(--white);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 10px;
+      }
+      .footer-col h4::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 30px;
+        height: 2px;
+        background: var(--primary-color);
+      }
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+      .footer-links a {
+        color: #bbb;
+        transition: var(--transition);
+      }
+      .footer-links a:hover {
+        color: var(--primary-color);
+        padding-left: 5px;
+      }
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 1rem;
+      }
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+      .social-links a:hover {
+        background: var(--primary-color);
+      }
+      .copyright {
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      /* --- RESPONSIVE --- */
+      @media (max-width: 992px) {
+        .about-flex,
+        .contact-wrapper {
+          grid-template-columns: 1fr;
+          flex-direction: column;
+        }
+        .timeline::before {
+          left: 30px;
+        }
+        .timeline-item {
+          width: 100%;
+          padding-left: 80px;
+          padding-right: 0;
+        }
+        .timeline-item:nth-child(even) {
+          padding-left: 80px;
+        }
+        .timeline-dot {
+          left: 20px !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        .nav-links {
+          position: fixed;
+          top: 70px;
+          left: -100%;
+          width: 100%;
+          height: calc(100vh - 70px);
+          background: var(--white);
+          flex-direction: column;
+          justify-content: center;
+          transition: var(--transition);
+        }
+        .nav-links.active {
+          left: 0;
+        }
+        .mobile-toggle {
+          display: block;
+        }
+        .btn-nav-cta {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER / NAVIGATION -->
+    <header>
+      <div class="nav-container">
+        <div class="logo" onclick="navigateTo('home')">
+          DarNest <span>(بيت / عش)</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li>
+            <a
+              onclick="navigateTo('home')"
+              class="active-link"
+              data-target="home"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a onclick="navigateTo('about')" data-target="about">About</a>
+          </li>
+          <li>
+            <a onclick="navigateTo('services')" data-target="services"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a onclick="navigateTo('listings')" data-target="listings"
+              >Listings</a
+            >
+          </li>
+          <li>
+            <a onclick="navigateTo('contact')" data-target="contact">Contact</a>
+          </li>
+          <li>
+            <button
+              onclick="navigateTo('contact')"
+              class="btn btn-primary btn-nav-cta"
+            >
+              Let's Talk
+            </button>
+          </li>
+        </ul>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- 1. HOME PAGE -->
+      <section id="home" class="page-section active">
+        <!-- Hero -->
+        <div class="hero">
+          <div class="hero-content">
+            <h1>Find Your Perfect Real Estate Property in the Middle East</h1>
+            <p>
+              Exclusive houses, premium apartments, and luxury buildings
+              tailored for your lifestyle and investments.
+            </p>
+            <button class="btn btn-primary" onclick="navigateTo('listings')">
+              Browse Properties
+            </button>
+            <button
+              class="btn btn-secondary"
+              style="color: white; border-color: white; margin-left: 10px"
+              onclick="navigateTo('contact')"
+            >
+              List Your Property
+            </button>
+          </div>
+        </div>
+
+        <!-- Trust Strip -->
+        <div class="trust-strip">
+          <div class="trust-grid">
+            <div class="trust-item">
+              <h4>$500M+</h4>
+              <p>Property Value Sold</p>
+            </div>
+            <div class="trust-item">
+              <h4>1,200+</h4>
+              <p>Happy Families</p>
+            </div>
+            <div class="trust-item">
+              <h4>15+</h4>
+              <p>Years in Middle East</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Key Benefits -->
+        <div class="benefits container">
+          <div class="section-title">
+            <span>Why DarNest</span>
+            <h2>Elevating Your Real Estate Journey</h2>
+          </div>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <i class="fas fa-gem"></i>
+              <h3>Premium Portfolio</h3>
+              <p>
+                Access off-market buildings and luxury apartments that aren't
+                available to the general public.
+              </p>
+            </div>
+            <div class="benefit-card">
+              <i class="fas fa-handshake"></i>
+              <h3>Cultural Expertise</h3>
+              <p>
+                Deep understanding of the Arabic real estate market, ensuring
+                seamless transactions and local trust.
+              </p>
+            </div>
+            <div class="benefit-card">
+              <i class="fas fa-chart-line"></i>
+              <h3>Investment ROI</h3>
+              <p>
+                Data-driven property recommendations designed to maximize rental
+                yields and long-term capital growth.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services Preview -->
+        <div
+          class="container"
+          style="background-color: var(--white); padding: 4rem 20px"
+        >
+          <div class="section-title">
+            <span>What We Do</span>
+            <h2>Comprehensive Property Solutions</h2>
+          </div>
+          <div class="benefits-grid" style="text-align: center">
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80"
+                alt="Buying a house"
+                style="border-radius: 8px; margin-bottom: 20px"
+              />
+              <h3>Buy</h3>
+              <p>
+                Find your dream house or apartment with our dedicated buying
+                agents.
+              </p>
+            </div>
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80"
+                alt="Selling properties"
+                style="border-radius: 8px; margin-bottom: 20px"
+              />
+              <h3>Sell</h3>
+              <p>
+                Get maximum market value for your building with our elite
+                marketing.
+              </p>
+            </div>
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80"
+                alt="Renting apartments"
+                style="border-radius: 8px; margin-bottom: 20px"
+              />
+              <h3>Rent</h3>
+              <p>
+                Discover high-end rentals and complete property management
+                services.
+              </p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 3rem">
+            <button class="btn btn-primary" onclick="navigateTo('services')">
+              View All Services
+            </button>
+          </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div
+          class="trust-strip"
+          style="
+            background-color: var(--primary-color);
+            text-align: center;
+            padding: 4rem 20px;
+          "
+        >
+          <h2 style="color: var(--white); margin-bottom: 1rem">
+            Ready to find your (بيت)?
+          </h2>
+          <p style="color: var(--white); max-width: 600px; margin: 0 auto 2rem">
+            Let our experts guide you to the perfect real estate investment or
+            dream home.
+          </p>
+          <button
+            class="btn btn-secondary"
+            style="color: var(--white); border-color: var(--white)"
+            onclick="navigateTo('contact')"
+          >
+            Contact Us Today
+          </button>
+        </div>
+      </section>
+
+      <!-- 2. ABOUT PAGE -->
+      <section id="about" class="page-section">
+        <div class="container">
+          <div class="about-flex">
+            <div class="about-image">
+              <img
+                src="https://images.unsplash.com/photo-1626885930974-4b69aa21bbf9?auto=format&fit=crop&w=800&q=80"
+                alt="DarNest Office in Middle East"
+              />
+            </div>
+            <div class="about-text">
+              <div class="section-title" style="text-align: left">
+                <span>Our Story</span>
+                <h2>Building Trust, One House at a Time</h2>
+              </div>
+              <p>
+                DarNest (بيت / عش) was founded on a simple principle: real
+                estate isn't just about buildings; it's about finding your nest.
+                For over 15 years, we have been the premier bridge connecting
+                discerning buyers and sellers across the Middle East.
+              </p>
+              <p>
+                <strong>Our Mission:</strong> To provide unparalleled
+                transparency, luxury, and cultural understanding in the Middle
+                Eastern property market.
+              </p>
+              <p>
+                <strong>What Makes Us Different:</strong> We don't just list
+                properties. We curate lifestyles. Our bilingual team understands
+                the nuances of Arabic culture and the rigorous demands of
+                international real estate investment. We treat your capital as
+                if it were our own.
+              </p>
+              <br />
+              <button class="btn btn-primary" onclick="navigateTo('contact')">
+                Meet Our Team
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. SERVICES PAGE -->
+      <section id="services" class="page-section">
+        <div class="container">
+          <div class="section-title">
+            <span>Expertise</span>
+            <h2>Our Premium Services</h2>
+          </div>
+          <div class="benefits-grid">
+            <div class="benefit-card" style="text-align: left">
+              <i class="fas fa-home"></i>
+              <h3>Property Sales</h3>
+              <p>
+                From marketing villas to high-rise apartments, we ensure your
+                asset reaches the right high-net-worth individuals.
+              </p>
+            </div>
+            <div class="benefit-card" style="text-align: left">
+              <i class="fas fa-search-location"></i>
+              <h3>Buyer Representation</h3>
+              <p>
+                We source the perfect real estate matching your exact criteria,
+                negotiating the best terms on your behalf.
+              </p>
+            </div>
+            <div class="benefit-card" style="text-align: left">
+              <i class="fas fa-building"></i>
+              <h3>Property Management</h3>
+              <p>
+                Complete end-to-end management for your rental buildings,
+                ensuring zero vacancy and well-maintained assets.
+              </p>
+            </div>
+          </div>
+
+          <div class="section-title" style="margin-top: 5rem">
+            <span>Process</span>
+            <h2>How It Works</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3>1. Consultation</h3>
+              <p>
+                We sit down with you to understand your budget, preferred
+                locations, and exact real estate goals.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3>2. Curation</h3>
+              <p>
+                Our experts handpick a portfolio of houses or apartments that
+                perfectly match your vision.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3>3. Viewing & Negotiation</h3>
+              <p>
+                We arrange private viewings and leverage our market authority to
+                negotiate the optimal price.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3>4. Closing & Handover</h3>
+              <p>
+                We handle all legal paperwork and ensure a smooth key handover
+                to your new property.
+              </p>
+            </div>
+          </div>
+
+          <div class="section-title" style="margin-top: 5rem">
+            <span>FAQ</span>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+          <div style="max-width: 800px; margin: 0 auto">
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+              <h4>Do you only sell luxury properties?</h4>
+              <div class="faq-answer">
+                While we specialize in premium real estate, our portfolio
+                includes excellent investment apartments and family houses
+                across various price points.
+              </div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+              <h4>Can non-residents buy property in the Middle East?</h4>
+              <div class="faq-answer">
+                Yes, in many designated freehold areas. Our legal team will
+                guide you through the specific regulations of the country you
+                are purchasing in.
+              </div>
+            </div>
+            <div class="faq-item" onclick="this.classList.toggle('active')">
+              <h4>How long does the buying process take?</h4>
+              <div class="faq-answer">
+                Typically, a cash transaction takes 2-4 weeks, while a financed
+                purchase may take 6-8 weeks from signing the initial agreement.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. LISTINGS PAGE -->
+      <section id="listings" class="page-section">
+        <div class="container">
+          <div class="section-title">
+            <span>Portfolio</span>
+            <h2>Exclusive Properties</h2>
+          </div>
+
+          <div class="filter-bar">
+            <button
+              class="filter-btn active"
+              onclick="filterListings('all', this)"
+            >
+              All
+            </button>
+            <button class="filter-btn" onclick="filterListings('buy', this)">
+              For Sale
+            </button>
+            <button class="filter-btn" onclick="filterListings('rent', this)">
+              For Rent
+            </button>
+            <button class="filter-btn" onclick="filterListings('house', this)">
+              Houses
+            </button>
+            <button
+              class="filter-btn"
+              onclick="filterListings('apartment', this)"
+            >
+              Apartments
+            </button>
+          </div>
+
+          <div class="listing-grid">
+            <!-- Property 1 -->
+            <div class="listing-card" data-category="buy house">
+              <div class="listing-img">
+                <span class="badge">For Sale</span>
+                <img
+                  src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=600&q=80"
+                  alt="Modern luxury house"
+                />
+              </div>
+              <div class="listing-content">
+                <h3 style="margin-bottom: 5px">Royal Palm Villa</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px">
+                  <i class="fas fa-map-marker-alt"></i> Dubai Hills Estate
+                </p>
+                <div class="listing-price">AED 8,500,000</div>
+                <div class="listing-meta">
+                  <span><i class="fas fa-bed"></i> 5 Beds</span>
+                  <span><i class="fas fa-bath"></i> 6 Baths</span>
+                  <span><i class="fas fa-vector-square"></i> 7,200 sqft</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Property 2 -->
+            <div class="listing-card" data-category="rent apartment">
+              <div class="listing-img">
+                <span class="badge" style="background: var(--secondary-color)"
+                  >For Rent</span
+                >
+                <img
+                  src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=600&q=80"
+                  alt="Luxury Apartment Interior"
+                />
+              </div>
+              <div class="listing-content">
+                <h3 style="margin-bottom: 5px">Marina Skyline Penthouse</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px">
+                  <i class="fas fa-map-marker-alt"></i> Dubai Marina
+                </p>
+                <div class="listing-price">AED 250,000 / yr</div>
+                <div class="listing-meta">
+                  <span><i class="fas fa-bed"></i> 3 Beds</span>
+                  <span><i class="fas fa-bath"></i> 4 Baths</span>
+                  <span><i class="fas fa-vector-square"></i> 2,800 sqft</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Property 3 -->
+            <div class="listing-card" data-category="buy apartment building">
+              <div class="listing-img">
+                <span class="badge">For Sale</span>
+                <img
+                  src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80"
+                  alt="Modern apartment building"
+                />
+              </div>
+              <div class="listing-content">
+                <h3 style="margin-bottom: 5px">Oasis Pearl Tower</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px">
+                  <i class="fas fa-map-marker-alt"></i> Doha, Qatar
+                </p>
+                <div class="listing-price">QAR 2,100,000</div>
+                <div class="listing-meta">
+                  <span><i class="fas fa-bed"></i> 2 Beds</span>
+                  <span><i class="fas fa-bath"></i> 3 Baths</span>
+                  <span><i class="fas fa-vector-square"></i> 1,450 sqft</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Property 4 -->
+            <div class="listing-card" data-category="buy house">
+              <div class="listing-img">
+                <span class="badge">For Sale</span>
+                <img
+                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80"
+                  alt="Large mansion estate"
+                />
+              </div>
+              <div class="listing-content">
+                <h3 style="margin-bottom: 5px">Desert Rose Estate</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px">
+                  <i class="fas fa-map-marker-alt"></i> Riyadh, KSA
+                </p>
+                <div class="listing-price">SAR 12,000,000</div>
+                <div class="listing-meta">
+                  <span><i class="fas fa-bed"></i> 7 Beds</span>
+                  <span><i class="fas fa-bath"></i> 8 Baths</span>
+                  <span><i class="fas fa-vector-square"></i> 10,500 sqft</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CONTACT PAGE -->
+      <section id="contact" class="page-section">
+        <div class="container">
+          <div class="section-title">
+            <span>Get in Touch</span>
+            <h2>Contact DarNest</h2>
+          </div>
+          <div class="contact-wrapper">
+            <div>
+              <div class="contact-info-card">
+                <h3>Corporate Headquarters</h3>
+                <p style="color: #bbb; margin-bottom: 2rem">
+                  Reach out to our real estate experts for consultation.
+                </p>
+
+                <div class="info-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div>
+                    <strong>Address</strong><br />
+                    Level 42, Boulevard Plaza, Downtown Dubai
+                  </div>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <div>
+                    <strong>Phone</strong><br />
+                    +971 4 123 4567
+                  </div>
+                </div>
+                <div class="info-item">
+                  <i class="fas fa-envelope"></i>
+                  <div>
+                    <strong>Email</strong><br />
+                    inquiries@darnest.com
+                  </div>
+                </div>
+
+                <div class="map-placeholder">
+                  <div>
+                    <i
+                      class="fas fa-map"
+                      style="font-size: 2rem; margin-bottom: 10px"
+                    ></i
+                    ><br />Interactive Map Embed
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3>Send us a Message</h3>
+              <p>Looking to buy, sell, or rent? Fill out the form below.</p>
+              <form
+                class="contact-form"
+                onsubmit="
+                  event.preventDefault();
+                  alert('Message sent successfully! We will contact you soon.');
+                "
+              >
+                <input type="text" placeholder="Your Full Name" required />
+                <input type="email" placeholder="Your Email Address" required />
+                <input type="tel" placeholder="Phone Number" required />
+                <textarea
+                  placeholder="Tell us about the properties you are looking for..."
+                  required
+                ></textarea>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="width: 100%"
+                >
+                  Submit Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">DarNest <span>(بيت)</span></div>
+          <p style="color: #bbb; font-size: 0.9rem">
+            The premier real estate agency connecting the Middle East with
+            luxury properties, houses, and exclusive apartments.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a onclick="navigateTo('home')">Home</a></li>
+            <li><a onclick="navigateTo('about')">About Us</a></li>
+            <li><a onclick="navigateTo('services')">Our Services</a></li>
+            <li><a onclick="navigateTo('listings')">Property Listings</a></li>
+            <li><a onclick="navigateTo('contact')">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Property Types</h4>
+          <ul class="footer-links">
+            <li><a onclick="navigateTo('listings')">Luxury Villas</a></li>
+            <li><a onclick="navigateTo('listings')">Apartment Buildings</a></li>
+            <li>
+              <a onclick="navigateTo('listings')">Commercial Real Estate</a>
+            </li>
+            <li><a onclick="navigateTo('listings')">Off-Plan Properties</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p style="color: #bbb; font-size: 0.9rem; margin-bottom: 1rem">
+            Subscribe to get the latest Middle East real estate market insights.
+          </p>
+          <div style="display: flex">
+            <input
+              type="email"
+              placeholder="Email Address"
+              style="
+                padding: 10px;
+                width: 100%;
+                border: none;
+                border-radius: 4px 0 0 4px;
+                outline: none;
+              "
+            />
+            <button
+              class="btn btn-primary"
+              style="border-radius: 0 4px 4px 0; padding: 10px 15px"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2024 DarNest Real Estate. All Rights Reserved. Designed for the
+        Middle East.
+      </div>
+    </footer>
+
+    <!-- JavaScript for SPA Navigation & Functionality -->
+    <script>
+      // Navigation Handler
+      function navigateTo(pageId) {
+        // Hide all pages
+        document.querySelectorAll(".page-section").forEach((section) => {
+          section.classList.remove("active");
+        });
+        // Show target page
+        document.getElementById(pageId).classList.add("active");
+
+        // Update active state in nav
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.classList.remove("active-link");
+          if (link.getAttribute("data-target") === pageId) {
+            link.classList.add("active-link");
+          }
+        });
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        // Close mobile menu if open
+        const navLinks = document.getElementById("navLinks");
+        if (navLinks.classList.contains("active")) {
+          navLinks.classList.remove("active");
+        }
+      }
+
+      // Mobile Menu Toggle
+      function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("active");
+      }
+
+      // Listing Filter Handler
+      function filterListings(category, btnElement) {
+        // Update active button state
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((btn) => btn.classList.remove("active"));
+        btnElement.classList.add("active");
+
+        // Filter logic
+        const cards = document.querySelectorAll(".listing-card");
+        cards.forEach((card) => {
+          const categories = card.getAttribute("data-category");
+          if (category === "all" || categories.includes(category)) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
